@@ -3,12 +3,6 @@ module SpreeKlarna
     class InstallGenerator < Rails::Generators::Base
       class_option :auto_run_migrations, type: :boolean, default: false
 
-      def add_devise_config
-        # Silences Devise warnings
-        create_file 'config/initializers/devise.rb',
-          %Q{Devise.secret_key = 'fake' * 10}
-      end
-
       def add_i18n_config
         # Silences i18n warnings
         create_file 'config/initializers/i18n.rb',
@@ -21,8 +15,8 @@ module SpreeKlarna
       end
 
       def add_stylesheets
-        inject_into_file 'vendor/assets/stylesheets/spree/frontend/all.css', " *= require spree/frontend/spree_klarna\n", before: /\*\//, verbose: true
-        inject_into_file 'vendor/assets/stylesheets/spree/backend/all.css', " *= require spree/backend/spree_klarna\n", before: /\*\//, verbose: true
+        inject_into_file 'vendor/assets/stylesheets/spree/frontend/all.css.scss', " *= require spree/frontend/spree_klarna\n", before: /\*\//, verbose: true
+        inject_into_file 'vendor/assets/stylesheets/spree/backend/all.scss', " *= require spree/backend/spree_klarna\n", before: /\*\//, verbose: true
       end
 
       def add_migrations

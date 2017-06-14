@@ -5,10 +5,10 @@ module Spree
     preference :id, :string
     preference :shared_secret, :string
     preference :eu_zone_name, :string, default: 'EU_VAT'
-    preference :terms_uri, :string, default: "#{Spree::Config[:site_url]}/terms"
-    preference :checkout_uri, :string, default: "#{Spree::Config[:site_url]}/klarna/checkout"
-    preference :confirmation_uri, :string, default: "#{Spree::Config[:site_url]}/klarna/confirm"
-    preference :push_uri, :string, default: "#{Spree::Config[:site_url]}/klarna/callback"
+    preference :terms_uri, :string, default: "#{Spree::Store.first[:url]}/terms"
+    preference :checkout_uri, :string, default: "#{Spree::Store.first[:url]}/klarna/checkout"
+    preference :confirmation_uri, :string, default: "#{Spree::Store.first[:url]}/klarna/confirm"
+    preference :push_uri, :string, default: "#{Spree::Store.first[:url]}/klarna/callback"
 
     def auto_capture?
       false
